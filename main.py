@@ -31,7 +31,7 @@ def formatar_memoria_curta(historico):
 def responder(client, store_name, pergunta, historico):
     memoria_curta = formatar_memoria_curta(historico)
     interaction = client.interactions.create(
-        model="gemini-3.5-flash",
+        model="gemini-3.1-pro-preview",
         system_instruction=PERSONALIDADE,
         input=(
             "Use o histórico recente apenas para manter continuidade da conversa. "
