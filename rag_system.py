@@ -11,14 +11,11 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent
 DOCUMENTS_DIR = BASE_DIR / "documentos"
 STORE_CACHE_PATH = BASE_DIR / ".rag_store.json"
-STORE_DISPLAY_NAME = os.getenv("FILE_SEARCH_STORE_DISPLAY_NAME", "documentos-pesquisa")
-EMBEDDING_MODEL = os.getenv("RAG_EMBEDDING_MODEL", "models/gemini-embedding-2")
+STORE_DISPLAY_NAME = "documentos-pesquisa"
+EMBEDDING_MODEL = "models/gemini-embedding-2"
 
 
 def get_client():
-    if not os.getenv("GEMINI_API_KEY"):
-        raise RuntimeError("A variável GEMINI_API_KEY não foi configurada.")
-
     return genai.Client()
 
 
@@ -168,9 +165,6 @@ def create_store_with_documents(client=None, document_paths=None):
             "embedding_model": EMBEDDING_MODEL,
         }
     )
-
-    if store.name is None:
-        raise RuntimeError("A File Search Store foi criada sem um nome.")
 
     upload_documents_to_store(client, store.name, document_paths)
     _save_store_cache(store.name, document_paths)
