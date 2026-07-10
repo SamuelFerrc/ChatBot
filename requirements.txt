@@ -1,0 +1,13 @@
+openai
+google-genai
+anthropic
+groq
+python-dotenv
+requests
+httpx
+rich
+pydantic
+tqdm
+pillow
+numpy
+pandas
